@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
@@ -25,10 +25,10 @@ function DetailsHotels() {
       {dataHotel &&
         dataHotel.map((el) => {
           return (
-            <span key={el.code} className="list-group-flush">
-              <img src={el.photo} alt={el.name} />
-              {el.name}
-            </span>
+            <Card key={el.code} className="hotel-card">
+              <Card.Img src={el.photo} alt={el.name} />{" "}
+              <Card.Text className="hotel-text"> {el.name} </Card.Text>
+            </Card>
           );
         })}
       <Button variant="warning" size="lg" block>
