@@ -3,6 +3,7 @@ import axios from "axios";
 import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 import { Card } from "react-bootstrap";
+import { formatPrice } from "../helpers";
 
 function Scroll() {
   let [data, setData] = useState([]);
@@ -49,7 +50,8 @@ function Scroll() {
 
                     <Card.Text>{el.description}</Card.Text>
                   </Card.Body>
-                  p.p van af <p className="price-home"> {el.price}</p>
+                  p.p van af{" "}
+                  <p className="price-home">{formatPrice(el.price)}</p>
                 </Card>
               );
             })}

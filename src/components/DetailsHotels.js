@@ -5,7 +5,7 @@ import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 
 function DetailsHotels() {
-  let [dataHotel, setDataHotel] = useState([]);
+  const [dataHotel, setDataHotel] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -13,8 +13,7 @@ function DetailsHotels() {
         "https://valkdigital-mock.netlify.app/api/v1/hotels"
       );
 
-      await setDataHotel(result.data.data);
-      console.log(result.data, "data hotels??");
+      setDataHotel(result.data.data);
       // const { data } = props.location.state;
     };
 

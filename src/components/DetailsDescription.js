@@ -3,15 +3,14 @@ import { Card, ListGroup, ListGroupItem, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleRight, faCheck } from "@fortawesome/free-solid-svg-icons";
 
-function DetailsDescription(props) {
-  console.log("hello");
+function DetailsDescription({ data: { features, content } }) {
   return (
     <div>
       <Card>
         <ListGroup className="list-group-flush">
-          <h2> Dit arrangement bevat</h2>
+          <h2>Dit arrangement bevat</h2>
 
-          {props.data.features.map((feature, index) => {
+          {features.map((feature, index) => {
             return (
               <ListGroupItem key={index}>
                 {feature}
@@ -28,7 +27,7 @@ function DetailsDescription(props) {
           })}
         </ListGroup>
         <h2> Over dit arrangement</h2>
-        <p>{props.data.content}</p>
+        <p>{content}</p>
         <Button variant="warning" size="lg" block>
           Nu boeken
           <FontAwesomeIcon
