@@ -2,51 +2,45 @@ import React, { useState } from "react";
 import DetailsDescription from "./DetailsDescription";
 import DetailsHotel from "./DetailsHotels";
 import { Card } from "react-bootstrap";
+import { formatPrice } from "../helpers";
 
 function ScrollDealsDetails(props) {
-  let [showResultsHotel, setShowResultsHotel] = useState(false);
-
-  let [showResultsDes, setShowResultsDes] = useState(true);
-
-  const onClickHotel = () => {
-    setShowResultsHotel(true);
-    setShowResultsDes(false);
+  const [showingDescription, setShowingDescription] = useState(true);
+  const onClickDescription = () => {
+    setShowingDescription(true);
+  };
+  const onClickHotels = () => {
+    setShowingDescription(false);
   };
 
-  const onClickDes = () => {
-    setShowResultsDes(true);
-    setShowResultsHotel(false);
-  };
-
+  const { data } = props.location.state;
+  const {
+    description,
+    image,
+    price,
+    title,
+    hotels,
+  } = props.location.state.data;
   return (
     <div>
       <Card>
-        <Card.Img
-          variant="top"
-          src={props.location.state.data.image}
-          style={{ width: "100%" }}
-        />
+        <Card.Img variant="top" src={image} style={{ width: "100%" }} />
       </Card>
       <Card>
         <Card.Body>
-          <Card.Title style={{ fontWeight: "bold" }}>
-            {props.location.state.data.title}
-          </Card.Title>
-          <Card.Text>{props.location.state.data.description}</Card.Text>
-          <p>van af p.p {props.location.state.data.price}</p>
+          <Card.Title style={{ fontWeight: "bold" }}>{title}</Card.Title>
+          <Card.Text>{description}</Card.Text>
+          <p>vanaf p.p {formatPrice(price)}</p>
         </Card.Body>
       </Card>
-      <button className="toggle-btn-1" onClick={onClickDes}>
+      <button className="toggle-btn-1" onClick={onClickDescription}>
         beschrijving
       </button>
-      <button className="toggle-btn-2" onClick={onClickHotel}>
-        beschikbare hotels ({props.location.state.data.title.length})
+      <button className="toggle-btn-2" onClick={onClickHotels}>
+        beschikbare hotels ({hotels.length})
       </button>
-      {showResultsHotel && <DetailsHotel />}
-
-      {showResultsDes && (
-        <DetailsDescription data={props.location.state.data} />
-      )}
+      {showingDescription && <DetailsDescription data={data} />}
+      {!showingDescription && <DetailsHotel />}
     </div>
   );
 }

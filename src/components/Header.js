@@ -7,6 +7,13 @@ import {
   faBatteryFull,
   faQrcode,
 } from "@fortawesome/free-solid-svg-icons";
+
+const BarIcon = ({ icon }) => (
+  <li>
+    <FontAwesomeIcon icon={icon} style={{ marginRight: "5px" }} />
+  </li>
+);
+
 function Header() {
   const time = new Date();
   const h = time.getHours();
@@ -15,29 +22,11 @@ function Header() {
   return (
     <div>
       <ul className="iconsHeader">
-        <li>
-          <FontAwesomeIcon icon={faSignal} style={{ marginRight: "5px" }} />
-        </li>
-        <li>
-          <FontAwesomeIcon icon={faWifi} style={{ marginRight: "5px" }} />
-        </li>
-        <li>
-          <FontAwesomeIcon
-            icon={faBatteryFull}
-            style={{ marginRight: "5px" }}
-          />
-        </li>
-        <br />
-        <li>
-          <FontAwesomeIcon icon={faQrcode} style={{ marginRight: "5px" }} />
-        </li>
-
-        <li>
-          <FontAwesomeIcon
-            icon={faUserCircle}
-            style={{ marginleft: "20px", float: "right" }}
-          />
-        </li>
+        <BarIcon icon={faSignal} />
+        <BarIcon icon={faWifi} />
+        <BarIcon icon={faBatteryFull} />
+        <BarIcon icon={faQrcode} />
+        <BarIcon icon={faUserCircle} />
       </ul>
 
       <h4>Deals</h4>
